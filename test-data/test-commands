@@ -1,0 +1,10 @@
+1. ./email send -d test-data/customers.csv -t test-data/template
+output_email.json and error.csv are created in the current directory.
+
+2. ./email send -d test-data/customers.csv -t test-data/template -o test-data/output_email.json -e test-data/error.csv
+output_email.json and error.csv are created in the test-data directory.
+
+3. ./email send
+ERRO[0000] required flag --template not provided
+
+3. ./email send --help

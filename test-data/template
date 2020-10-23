@@ -1,0 +1,7 @@
+[{{range .Customers}}{
+    "from": "The Marketing Team<marketing@example.com>",
+    "to": "{{.Email}}",
+    "subject": "{{.FirstName}}, a new product is being launched soon...",
+    "mimeType": "text/plain",
+    "body": "Hi {{.Title}} {{.FirstName}} {{.LastName}},\nToday,{{.Today}}, we would like to tell you that... Sincerely,\nThe Marketing Team"
+},{{end}}]
