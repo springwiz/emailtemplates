@@ -7,4 +7,6 @@ output_email.json and error.csv are created in the test-data directory.
 3. ./email send
 ERRO[0000] required flag --template not provided
 
-3. ./email send --help
+4. ./email send --help
+
+5. docker run -it --rm -v `PWD`/test-data:/work a58bcd30ac4b -d /work/customers.csv -t /work/template
