@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+go build ./cmd/email
+go test ./...
+golangci-lint run
