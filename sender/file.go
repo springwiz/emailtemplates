@@ -12,10 +12,12 @@ import (
 	"github.com/pingcap/errors"
 )
 
+// Customer houses the data captured from the csv file.
 type Customer struct {
 	Title, FirstName, LastName, Email, Today string
 }
 
+// CsvFileError represents the errors thrown while parsing csv file.
 type CsvFileError struct {
 	Context string
 	Err     error
@@ -23,6 +25,7 @@ type CsvFileError struct {
 
 func (e CsvFileError) Error() string { return e.Context + ": " + e.Err.Error() }
 
+// TransformError represents the errors thrown while generating email content.
 type TransformError struct {
 	Context string
 	Err     error
@@ -30,6 +33,7 @@ type TransformError struct {
 
 func (e TransformError) Error() string { return e.Context + ": " + e.Err.Error() }
 
+// InvalidArgError represents the errors thrown because of inavlid args.
 type InvalidArgError struct {
 	Context string
 	Err     error
@@ -37,12 +41,15 @@ type InvalidArgError struct {
 
 func (e InvalidArgError) Error() string { return e.Context + ": " + e.Err.Error() }
 
+// File encapsulates the file based Email Sender.
 type File func([]Customer, ...string) error
 
+// SendEmail generates and sends the emails.
 func (f File) SendEmail(customers []Customer, emailParams ...string) error {
 	return f(customers, emailParams...)
 }
 
+// NewFile creates a new File based Email Sender.
 func NewFile() File {
 	return func(customers []Customer, emailParams ...string) error {
 		if len(emailParams) < 3 {
