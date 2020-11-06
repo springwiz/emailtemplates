@@ -1,6 +1,12 @@
-FROM golang:1.15.0-buster AS builder
-ENV GO111MODULE=auto
+FROM golang:alpine AS builder
+ENV GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64
 WORKDIR /src
 ADD . /src
 RUN go build ./cmd/email
-ENTRYPOINT ["./email","send"]
+
+FROM scratch
+COPY --from=builder /src/email /
+ENTRYPOINT ["/email","send"]
